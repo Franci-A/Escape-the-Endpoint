@@ -36,27 +36,35 @@ public class DemoApplication {
 	}
 
 
+	@GetMapping("/api/clues")
+	public ResponseEntity<ClueResponse> getClues(){
+		return ResponseEntity.ok(new ClueResponse("----Escape the Endpoint----",
+				"Complete the api call : /api/escape/____ , find the four letter code to escape. The clues for each letter can be obtained by going to /api/clues/{id}",
+				List.of("Remember to REST")));
+	}
+
 	@GetMapping("/api/clues/{id}")
-	public ResponseEntity<ClueResponse> getFirstClue(@PathVariable("id") int id) throws Exception {
+	public ResponseEntity<ClueResponse> getCluesWithId(@PathVariable("id") int id) throws Exception {
 
 		switch (id){
 			case 1:
-				return ResponseEntity.ok(new ClueResponse("""
-                ----Escape the Endpoint----
-                 Complete the api call : "/api/escape/____"
-                Find the four letter code to escape""",
-						List.of("Your first clue is : Remember to rest")));
+				return ResponseEntity.ok(new ClueResponse(
+                "----Clue for First letter----",
+                "The most basic REST function that you have been using already",
+						List.of("/api/escape")));
 			case 2:
 				return ResponseEntity.ok(new ClueResponse("---- Clue for Second letter ----",
-					List.of("My answer is in the post",
-							"My first is the year I finished my studies, int year",
+					"My answer is in the post",
+					List.of("My first is the year I finished my studies, int year",
 							"My Second is my first name, string name",
 							"My last is if I published a game on steam, bool gameIsOut")));
 			case 3:
 				return ResponseEntity.ok(new ClueResponse("---- Clue for Third letter ----",
+						"Something needs to be put back in its place -- int index, int value",
 						List.of("1","2","4","8","16","21","64","128","256")));
 			case 4:
-				return  ResponseEntity.ok(new ClueResponse("---- Clue for Third letter ----",
+				return  ResponseEntity.ok(new ClueResponse("---- Clue for Forth letter ----",
+						"There are too many things here, sometimes binary is the answer  --  int index",
 						forthClue));
 				default:
 				throw new Exception();
@@ -65,7 +73,7 @@ public class DemoApplication {
 
 	@GetMapping("/api/escape")
 	public PuzzleResponseEntity getFirstLetter(){
-		return new PuzzleResponseEntity( "Okay this was a easy one, just to get you started", 1,'B');
+		return new PuzzleResponseEntity( "Okay this was an easy one, just to get you started", 1,'B');
 	}
 
 
