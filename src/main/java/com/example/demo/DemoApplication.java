@@ -15,19 +15,19 @@ public class DemoApplication {
   List<String> forthClue =
       new ArrayList<String>(
           List.of(
-              "0, true",
-              "1, true",
-              "0, false",
-              "0, true",
-              "1, true",
-              "1, false",
-              "0, false",
-              "0, true",
-              "0, true",
-              "1, false",
-              "0, true",
-              "1, true",
-              "0, false"));
+              "0, Valid",
+              "1, Valid",
+              "1, Invalid",
+              "0, Valid",
+              "1, Valid",
+              "1, Invalid",
+              "0, Invalid",
+              "0, Valid",
+              "0, Valid",
+              "1, Invalid",
+              "0, Valid",
+              "1, Valid",
+              "0, Invalid"));
 
   List<String> copyOfForthClue = new ArrayList<String>(forthClue);
 
@@ -58,7 +58,7 @@ public class DemoApplication {
         return ResponseEntity.ok(
             new ClueResponse(
                 "---- Clue for Second letter ----",
-                "My answer is in the post",
+                "My answer is in the post -- Request Body",
                 List.of(
                     "My first is the year I finished my studies, int year",
                     "My Second is my first name, string name",
@@ -67,13 +67,13 @@ public class DemoApplication {
         return ResponseEntity.ok(
             new ClueResponse(
                 "---- Clue for Third letter ----",
-                "Something needs to be put back in its place -- int index, int value",
+                "Something needs to be put back in its place -- Request Param : int index, int value",
                 List.of("1", "2", "4", "8", "16", "21", "64", "128", "256")));
       case 4:
         return ResponseEntity.ok(
             new ClueResponse(
                 "---- Clue for Forth letter ----",
-                "There are too many things here, sometimes binary is the answer  --  int index",
+                "There are too many things here, sometimes binary is the answer  -- Path Variable : int index",
                 forthClue));
       default:
         throw new Exception();
